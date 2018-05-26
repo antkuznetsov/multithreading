@@ -24,15 +24,16 @@ public class Service {
     }
 
     public synchronized String getData() {
+        try {
+            Thread.sleep(1); // иначе System.out не успевает выводить в правильном виде :)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (counter.get() == 5) {
             System.out.println("Кеш очищен!");
             counter.set(0);
         }
         counter.addAndGet(1);
         return data.toString() + "(" + counter + ")";
-    }
-
-    public void setData(Map<String, String> data) {
-        this.data = data;
     }
 }

@@ -1,7 +1,5 @@
 package ru.iteco;
 
-import java.util.Map;
-
 public class Reader extends Thread {
 
     private Service service;
@@ -13,7 +11,6 @@ public class Reader extends Thread {
 
     @Override
     public void run() {
-        String data = service.getData();
-        System.out.println(data);
+        System.out.println(service.getData());
     }
 }
