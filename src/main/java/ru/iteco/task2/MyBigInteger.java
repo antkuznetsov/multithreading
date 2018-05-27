@@ -11,9 +11,19 @@ public class MyBigInteger implements Sequence {
         data.set(BigInteger.ZERO);
     }
 
+    public MyBigInteger(String num) {
+        data.set(new BigInteger(num));
+    }
+
     @Override
-    public synchronized BigInteger next() {
-        return data.getAndSet(data.get().add(BigInteger.ONE));
+    public BigInteger next() {
+        while (true) {
+            BigInteger current = data.get();
+            BigInteger next = current.add(BigInteger.ONE);
+            if (data.compareAndSet(current, next)) {
+                return next;
+            }
+        }
     }
 
     @Override
