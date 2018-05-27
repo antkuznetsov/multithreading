@@ -1,4 +1,4 @@
-package ru.iteco;
+package ru.iteco.task1;
 
 public class Reader extends Thread {
 
